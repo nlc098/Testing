@@ -59,7 +59,7 @@ export async function navigateToHomePage(page: Page) {
     if (!homePageTitle.includes('Automation Exercise')) {
       throw new Error('Home page no es visible');
     }
-    console.log('Home page es visible successfully');
+    console.log('Home page es visible');
 }
   
   // Función para hacer clic en el botón 'Signup / Login'
@@ -232,5 +232,130 @@ export async function clickHomeButtonAndVerify(page: Page) {
     if (!homePageTitle.includes('Automation Exercise')) {
       throw new Error('Home page no es visible');
     }
-    console.log('Home page es visible successfully');
+    console.log('Home page es visible');
   }
+// Función para hacer click en Test Cases
+export async function clickTestButtonAndVerify(page: Page) {
+   await page.click('a:has-text(" Test Cases")');
+   // Cierra la publicidad si aparece
+   await closeAdIfPresent(page);
+   await page.waitForSelector('h2:has-text("Test Cases")');
+   const testCase = await page.textContent('h2:has-text("Test Cases")');
+   if (!testCase) {
+    throw new Error('Test Cases no es visible');
+   }
+   console.log('Test Cases es visible');
+}
+
+//Función para cerrar una publicidad si aparece
+export async function closeAdIfPresent(page: Page) {
+  try {
+    await page.frameLocator('iframe[name="aswift_6"]').getByLabel('Close ad').click();
+  } catch (error) {
+    console.error('Error al intentar cerrar la publicidad:', error);
+  }
+}
+
+// Función para hacer click en Product
+export async function clickProductsAndVerify(page: Page) {
+  await page.click('a[href="/products"]');
+  // Cierra la publicidad si aparece
+  await closeAdIfPresent(page);
+  await page.waitForSelector('h2:has-text("All Products")');
+  const testCase = await page.textContent('h2:has-text("All Products")');
+  if (!testCase) {
+   throw new Error('All Products no es visible');
+  }
+  console.log('All Products es visible');
+}
+
+// Verificar que la lista de productos es visible
+export async function verifyProductsListIsVisible(page: Page) {
+  const firstProduct = await page.locator('.features_items .col-sm-4').first();
+  if (!await firstProduct.isVisible()) {
+    throw new Error('La lista de productos no es visible');
+  }
+  console.log('La lista de productos es visible');
+}
+
+// Hacer clic en 'View Product' del primer producto y verificar la página de detalles del producto
+export async function clickFirstProductAndVerifyDetailPage(page: Page) {
+  await page.locator('.features_items .col-sm-4').first().locator('.choose a').click();
+  await page.waitForSelector('.product-information');
+  const productDetail = await page.locator('.product-information');
+  if (!await productDetail.isVisible()) {
+    throw new Error('La página de detalles del producto no es visible');
+  }
+  console.log('La página de detalles del producto es visible');
+}
+
+// Verificar que los detalles del producto son visibles
+export async function verifyProductDetails(page: Page) {
+  const productName = await page.textContent('.product-information h2');
+  const category = await page.textContent('.product-information p:nth-of-type(1)');
+  const price = await page.textContent('.product-information span > span');
+  const availability = await page.textContent('.product-information p:nth-of-type(2)');
+  const condition = await page.textContent('.product-information p:nth-of-type(3)');
+  const brand = await page.textContent('.product-information p:nth-of-type(4)');
+
+  if (!productName || !category || !price || !availability || !condition || !brand) {
+    throw new Error('No todos los detalles del producto son visibles');
+  }
+  console.log('Los detalles del producto son visibles');
+}
+
+// Realizar una búsqueda de producto
+export async function searchProduct(page: Page, productName: string) {
+  await page.locator('input[id="search_product"]').fill( productName);
+  await page.press('input[id="search_product"]', 'Enter');
+  await page.click('button[id="submit_search"]')
+}
+
+// Verificar si los productos relacionados con la búsqueda son visibles
+export async function verifySearchedProductsAreVisible(page: Page, productName: string) {
+  await page.waitForSelector('h2:has-text("SEARCHED PRODUCTS")');
+  const searchedProductsTitle = await page.textContent('h2:has-text("SEARCHED PRODUCTS")');
+  if (!searchedProductsTitle) {
+    throw new Error('SEARCHED PRODUCTS no es visible');
+  }
+  console.log('SEARCHED PRODUCTS es visible');
+
+  // Obtener el número de productos relacionados con la búsqueda
+  const searchedProductsCount = await page.$$eval('div.productinfo', elements => elements.length);
+    
+  // Obtener el número total de productos visibles en la página
+  const allProductsCount = await page.$$eval('div.product-image-wrapper', elements => elements.length);
+
+  // Verificar si son iguales
+  if (searchedProductsCount === allProductsCount) {
+      console.log('Todos los productos relacionados con la búsqueda son visibles. '+allProductsCount+' productos en total');
+  } else {
+       throw new Error('No todos los productos relacionados con la búsqueda son visibles');
+  }
+
+}
+
+// Función para desplazarse hacia abajo hasta el pie de página
+export async function scrollToFooter(page: Page) {
+  await page.evaluate(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+  });
+  await page.waitForSelector('h2:has-text("SUBSCRIPTION")');
+}
+
+// Función para verificar el texto 'SUBSCRIPTION'
+export async function verifySubscriptionText(page: Page) {
+  await page.waitForSelector('h2:has-text("SUBSCRIPTION")');
+}
+
+// Función para ingresar el correo electrónico y hacer clic en el botón
+export async function enterEmailAndSubscribe(page: Page, email: string) {
+  await page.locator('input[type="email"]').fill(email);
+  await page.click('button[type="submit"]');
+}
+
+// Función para verificar que el mensaje de éxito 'You have been successfully subscribed!' es visible
+export async function verifySubscriptionSuccessMessage(page: Page) {
+  await page.waitForSelector('div.alert-success:has-text("You have been successfully subscribed!")');
+  console.log('El mensaje de éxito de suscripción es visible');
+}
