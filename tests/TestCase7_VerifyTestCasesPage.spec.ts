@@ -1,11 +1,14 @@
 import { test } from '@playwright/test';
-import * as helpers from './helpers.ts';
+import * as actions from '../helpers/actions.ts';
+import * as verifications from '../helpers/verifications.ts';
 
   test('Test Case 7: Verify Test Cases Page', async ({ page }) => {  
     
     try {
-      await helpers.navigateToHomePage(page);
-      await helpers.clickTestButtonAndVerify(page);
+      await actions.navigateToHomePage(page);
+      await verifications.verifyHomePage(page);
+      await actions.clickTestButton(page);
+      await verifications.verifyTestCases(page);
     } catch (error) {
       console.error(error);
     } 

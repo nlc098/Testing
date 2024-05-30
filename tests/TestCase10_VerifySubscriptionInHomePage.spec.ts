@@ -1,14 +1,17 @@
 import { test } from '@playwright/test';
-import * as helpers from './helpers.ts';
+import * as actions from '../helpers/actions.ts';
+import * as fill from '../helpers/fill.ts';
+import * as verifications from '../helpers/verifications.ts';
 
   test('Test Case 10: Verify Subscription in home page', async ({ page }) => {  
     try {
-      await helpers.navigateToHomePage(page);
-      await helpers.scrollToFooter(page);
-      await helpers.verifySubscriptionText(page);
+      await actions.navigateToHomePage(page);
+      await verifications.verifyHomePage(page);
+      await actions.scrollToFooter(page);
+      await verifications.verifySubscriptionText(page);
       const email = 'user@email.com';
-      await helpers.enterEmailAndSubscribe(page,email);
-      await helpers.verifySubscriptionSuccessMessage(page);
+      await fill.enterEmailAndSubscribe(page,email);
+      await verifications.verifySubscriptionSuccessMessage(page);
     } catch (error) {
       console.error(error);
     } 
