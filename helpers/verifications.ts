@@ -181,7 +181,8 @@ export async function verifySearchedProductsAreVisible(page: Page, productName: 
 
 // Función para verificar el texto 'SUBSCRIPTION'
 export async function verifySubscriptionText(page: Page) {
-    await page.waitForSelector('h2:has-text("SUBSCRIPTION")');
+    await page.waitForSelector('h2:has-text("Subscription")');
+    console.log('El texto "SUBSCRIPTION" es visible en la página.');
 }
 
 // Función para verificar que el mensaje de éxito 'You have been successfully subscribed!' es visible
@@ -189,3 +190,82 @@ export async function verifySubscriptionSuccessMessage(page: Page) {
     await page.waitForSelector('div.alert-success:has-text("You have been successfully subscribed!")');
     console.log('El mensaje de éxito de suscripción es visible');
 }
+
+// Función para verificar si se agregaron correctamente los productos
+export async function verifyProductsAddedToCart(page: Page) {
+    await page.waitForSelector('.table-responsive.cart_info');
+    const productRows = await page.$$('.table-responsive.cart_info tbody tr');
+    if (productRows.length < 2) {
+        throw new Error('Los productos no fueron agregados correctamente');
+    }
+    console.log('Ambos productos fueron agregados correctamente');
+}
+
+// Función para verificar los detalles de los productos
+export async function verifyProductDetailsInCart(page: Page) {
+    await page.waitForSelector('.table-responsive.cart_info');
+    const productRows = await page.$$('.table-responsive.cart_info tbody tr');
+    for (const row of productRows) {
+        // Obtiene los detalles del producto
+        const productNameElement = await row.$('.cart_description h4 a');
+        const productPriceElement = await row.$('.cart_price p');
+        const productQuantityElement = await row.$('.cart_quantity button');
+        const productTotalElement = await row.$('.cart_total p');
+        // Verifica si los elementos existen antes de obtener su texto
+        const productName = productNameElement ? await productNameElement.textContent() : '';
+        const productPrice = productPriceElement ? await productPriceElement.textContent() : '';
+        const productQuantity = productQuantityElement ? await productQuantityElement.textContent() : '';
+        const productTotal = productTotalElement ? await productTotalElement.textContent() : '';
+        // Imprime los detalles del producto
+        console.log(`Product Name: ${productName}`+`, Price: ${productPrice}`+`, Quantity: ${productQuantity}`+`, Total: ${productTotal}`);
+
+    }
+}
+
+// Función para verificar la cantidad del producto
+export async function verifyProductQuantity(page: Page) {
+    await page.waitForSelector('.table-responsive.cart_info'); 
+    const productQuantityElement = await page.$('.cart_quantity button');
+    const productQuantity = productQuantityElement ? await productQuantityElement.textContent() : null; 
+    if (!productQuantity || productQuantity.trim() !== '4') {
+        throw new Error('La cantidad de productos no es exacta.');
+    }
+    console.log('La cantidad de productos es exacta.');
+}
+
+
+// Verifica que la página del carrito se muestre correctamente.
+
+export async function verifyCartPage(page: Page) {
+    await page.waitForSelector('.cart_info'); 
+    const cartInfo = await page.$('.cart_info');
+    if (!cartInfo) {
+        throw new Error('La página del carrito no se ha cargado correctamente');
+    }
+    console.log('La página del carrito se ha cargado correctamente');
+}
+
+//Verifica que la página del checkout se muestre correctamente.
+
+export async function verifyAddressDetailsAndReviewOrder(page: Page) {
+    await page.waitForSelector('h3:has-text("Your delivery address")'); 
+    await page.waitForSelector('h3:has-text("Your billing address")'); 
+    const deladd = await page.$('h3:has-text("Your delivery address")');
+    const billadd = await page.$('h3:has-text("Your billing address")');
+    if (!deladd && !billadd ) {
+        throw new Error('La página del checkout no se ha cargado correctamente');
+    }
+    console.log('La página del checkout se ha cargado correctamente');
+}
+
+
+// Función para verificar que la cuenta ha sido eliminada
+export async function verifyOrderPlacedSuccessfully(page: Page) {
+    const OrderPlaced = await page.textContent('h2:has-text("Order Placed!")');
+    if (!OrderPlaced) {
+        throw new Error('Order Placed! no es visible');
+    }
+    console.log('Order Placed! es visible');
+}
+
+

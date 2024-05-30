@@ -11,7 +11,7 @@ const URL = 'http://automationexercise.com';
   
 const registerUserData = {
     name: 'NlC098',
-    email: 'nlc098@email.com',
+    email: 'nlc098888888@email.com',
     password: '123',
     day: '16',
     month: '11',

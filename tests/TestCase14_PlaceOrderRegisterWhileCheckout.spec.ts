@@ -1,0 +1,31 @@
+import { test } from '@playwright/test';
+import * as actions from '../helpers/actions';
+import * as verifications from '../helpers/verifications';
+import * as fill from '../helpers/fill.ts';
+
+test('Test Case 14: Place Order: Register while Checkout', async ({ page }) => {
+    await actions.navigateToHomePage(page);
+    await verifications.verifyHomePage(page);
+    await actions.clickFirstProduct(page);
+    await actions.clickAddCart(page);
+    await actions.clickCartSec(page);
+    await verifications.verifyCartPage(page);
+    await actions.clickProceedToCheckout(page);
+    await actions.clickRegisterOrLogin(page);
+    await fill.registerUser(page);
+    await actions.clickSignup(page);
+    await fill.fillAccountDetails(page);
+    await actions.clickCreateAccount(page);
+    await verifications.verifyAccountCreated(page);
+    await actions.clickContinue(page);
+    await verifications.verifyLoggedInAs(page);
+    await actions.clickCart(page);
+    await actions.clickProceedToCheckout(page);
+    await verifications.verifyAddressDetailsAndReviewOrder(page);
+    await fill.enterDescriptionAndPlaceOrder(page);
+    await fill.enterPaymentDetails(page);
+    await actions.payAndConfirmOrder(page);
+    await verifications.verifyOrderPlacedSuccessfully(page);
+    await actions.clickDeleteAccount(page);
+    await verifications.verifyAccountDeleted(page);
+});

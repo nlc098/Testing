@@ -11,7 +11,7 @@ const URL = 'http://automationexercise.com';
   
 const registerUserData = {
     name: 'NlC098',
-    email: 'nlc098@email.com',
+    email: 'nlc098@email.com1111111',
     password: '123',
     day: '16',
     month: '11',
@@ -51,6 +51,14 @@ const registerUserData = {
     filePath: 'C:\\Users\\Usuario\\Desktop\\Testing\\tests\\file.txt'
   
   };
+
+  const paymentDetails = {
+    nameOnCard: "nico",
+    cardNumber: "1234567890123456",
+    cvc: "123",
+    expiryMonth: "12",
+    expiryYear: "2024"
+};
 
 // Función para registrar un nuevo usuario
 export async function registerUser(page: Page) {
@@ -127,3 +135,18 @@ export async function enterEmailAndSubscribe(page: Page, email: string) {
   await page.click('button[type="submit"]');
 }
 
+
+// Función para ingresar el correo electrónico y hacer clic en el botón
+export async function enterDescriptionAndPlaceOrder(page) {
+  await page.locator('textarea[class="form-control"]').fill(contactUsData.message);
+  await page.click('a[href="/payment"]');
+}
+
+
+export async function enterPaymentDetails(page) {
+  await page.locator('input[data-qa="name-on-card"]').fill(paymentDetails.nameOnCard);
+  await page.locator('input[data-qa="card-number"]').fill(paymentDetails.cardNumber);
+  await page.locator('input[data-qa="cvc"]').fill(paymentDetails.cvc);
+  await page.locator('input[data-qa="expiry-month"]').fill(paymentDetails.expiryMonth);
+  await page.locator('input[data-qa="expiry-year"]').fill(paymentDetails.expiryYear);
+}

@@ -89,9 +89,10 @@ export async function clickProducts(page: Page) {
   
 }
 
-// Hacer clic en 'View Product' del primer producto y verificar la página de detalles del producto
+// Función para verificar la página de detalles del producto
 export async function clickFirstProduct(page: Page) {
     await page.locator('.features_items .col-sm-4').first().locator('.choose a').click();
+    await closeAdIfPresent(page);
     
 }
 
@@ -100,5 +101,66 @@ export async function scrollToFooter(page: Page) {
     await page.evaluate(() => {
         window.scrollTo(0, document.body.scrollHeight);
     });
-    await verifcations.verifySubscriptionText(page);
+}
+//Función para hacer clic en 'Cart' del navbar
+export async function clickCart(page: Page) { 
+    await page.click('a[href="/view_cart"]');
+}
+
+//Función para hacer clic en 'Cart'
+export async function clickCartSec(page: Page) { 
+    await page.getByRole('link', { name: 'View Cart' }).click();
+}
+
+//Función para hacer clic en 'Add Cart'
+export async function clickAddCart(page: Page) { 
+    await page.getByRole('button', { name: ' Add to cart' }).click();
+}
+
+// Hace clic en el botón 'Continue Shopping'.
+export async function clickContinueShoppingButton(page: Page) {
+    const continueShoppingButtonSelector = 'button.btn.btn-success.close-modal.btn-block[data-dismiss="modal"]';
+    await page.waitForSelector(continueShoppingButtonSelector);
+    await page.click(continueShoppingButtonSelector);
+}
+
+//Hace hover sobre el primer producto y hace clic en 'Add to cart'.
+export async function hoverFirstProductAndAddToCart(page: Page) {
+    const addToCartButtonSelector = 'a[data-product-id="1"]';
+    await page.waitForSelector(addToCartButtonSelector);
+    await page.hover(addToCartButtonSelector);
+    await page.waitForTimeout(500); // Ajusta el tiempo según sea necesario
+    await page.click(addToCartButtonSelector);
+}
+
+//Hace hover sobre el segundo producto y hace clic en 'Add to cart'.
+export async function hoverSecondProductAndAddToCart(page: Page) {
+    const addToCartButtonSelector = 'a[data-product-id="2"]';
+    await page.waitForSelector(addToCartButtonSelector);
+    await page.hover(addToCartButtonSelector);
+    await page.waitForTimeout(500); // Ajusta el tiempo según sea necesario
+    await page.click(addToCartButtonSelector);
+}
+
+
+// Función para aumentar la cantidad del producto a 4 y agregarlo al carrito
+export async function increaseQuantity(page: Page) {
+    await page.locator('#quantity').fill('4');
+}
+
+
+//Función para hacer clic en 'ProceedToCheckout'
+export async function clickProceedToCheckout(page: Page) { 
+    await page.click('a:has-text("Proceed To Checkout")');
+}
+
+//Función para hacer clic en 'RegisterOrLogin'
+export async function clickRegisterOrLogin(page: Page) { 
+    await page.click('a:has-text("Register / Login")');
+}
+
+
+//Función para hacer clic en 'pay-button'
+export async function payAndConfirmOrder(page: Page) { 
+    await page.click('button[data-qa="pay-button"]');
 }
