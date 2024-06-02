@@ -187,6 +187,7 @@ export async function clickSubCategory(page: Page, subCategoryLink: string) {
     await closeAdIfPresent(page);
 }
 
+// Función para hacer clic en un Brand
 export async function clickBrand(page: Page, brand: string) {
     await page.click(`a[href="/brand_products/${brand}"]` );
 }

@@ -10,47 +10,55 @@ import {Page} from '@playwright/test';
 const URL = 'http://automationexercise.com';
   
 const registerUserData = {
-    name: 'NlC098',
-    email: 'nlc098888888@email.com',
-    password: '123',
-    day: '16',
-    month: '11',
-    year: '1998',
-    firstName: 'Nico',
-    lastName: 'Lepore',
-    company: 'Company',
-    address1: '8 de Octubre 1234',
-    address2: '18 de Julio 7894',
-    country: 'United States',
-    state: 'California',
-    city: 'Los Angeles',
-    zipcode: '90001',
-    mobileNumber: '1234567890'
-  };
+  name: 'NlC098',
+  email: 'nlc098@email.com',
+  password: '123',
+  day: '16',
+  month: '11',
+  year: '1998',
+  firstName: 'Nico',
+  lastName: 'Lepore',
+  company: 'Company',
+  address1: '8 de Octubre 1234',
+  address2: '18 de Julio 7894',
+  country: 'United States',
+  state: 'California',
+  city: 'Los Angeles',
+  zipcode: '90001',
+  mobileNumber: '1234567890'
+};
 
-  const userLoginData = {
-    email: 'nlc098@email.com',
-    password: '123'
-  };
+const userLoginData = {
+  email: 'nlc098@email.com',
+  password: '123'
+};
 
-  const userLoginIncorrectData = {
-    email: 'asdqwerd@email.com',
-    password: '123'
-  };
+const userLoginIncorrectData = {
+  email: 'asdqwerd@email.com',
+  password: '123'
+};
 
-  const userSignupData = {
-    email: 'nlc098@email.com',
-    name: 'NlC098'
-  };
+const userSignupData = {
+  email: 'nlc098@email.com',
+  name: '123'
+};
 
-  const contactUsData = {
-    email: 'user@email.com',
-    name: 'user',
-    subject: 'asdasd',
-    message:'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    filePath: 'C:\\Users\\Usuario\\Desktop\\Testing\\tests\\file.txt'
-  
-  };
+const contactUsData = {
+  email: 'user@email.com',
+  name: 'user',
+  subject: 'asdasd',
+  message:'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+  filePath: 'C:\\Users\\Usuario\\Desktop\\Testing\\tests\\file.txt'
+
+};
+
+const paymentDetails = {
+  nameOnCard: "nico",
+  cardNumber: "1234567890123456",
+  cvc: "123",
+  expiryMonth: "12",
+  expiryYear: "2024"
+};
 
   // Función para navegar a la página principal
 export async function navigateToHomePage(page: Page) {

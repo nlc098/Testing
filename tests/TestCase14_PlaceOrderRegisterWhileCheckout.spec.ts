@@ -2,8 +2,24 @@ import { test } from '@playwright/test';
 import * as actions from '../helpers/actions';
 import * as verifications from '../helpers/verifications';
 import * as fill from '../helpers/fill.ts';
+import * as mod from '../helpers/mod.ts';
 
 test('Test Case 14: Place Order: Register while Checkout', async ({ page }) => {
+
+    const userLoginData = {
+        email: 'nlc098@email.com',
+        password: '123'
+      };
+
+      const paymentDetails = {
+        nameOnCard: "nico",
+        cardNumber: "1234567890123456",
+        cvc: "123",
+        expiryMonth: "12",
+        expiryYear: "2024",
+        message:'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+      };
+    
     await actions.navigateToHomePage(page);
     await verifications.verifyHomePage(page);
     await actions.hoverFirstProductAndAddToCart(page);
@@ -11,20 +27,8 @@ test('Test Case 14: Place Order: Register while Checkout', async ({ page }) => {
     await verifications.verifyCartPage(page);
     await actions.clickProceedToCheckout(page);
     await actions.clickRegisterOrLogin(page);
-    await fill.registerUser(page);
-    await actions.clickSignup(page);
-    await fill.fillAccountDetails(page);
-    await actions.clickCreateAccount(page);
-    await verifications.verifyAccountCreated(page);
-    await actions.clickContinue(page);
-    await verifications.verifyLoggedInAs(page);
+    await mod.login(page,userLoginData);
     await actions.clickCart(page);
-    await actions.clickProceedToCheckout(page);
-    await verifications.verifyAddressDetailsAndReviewOrder(page);
-    await fill.enterDescriptionAndPlaceOrder(page);
-    await fill.enterPaymentDetails(page);
-    await actions.payAndConfirmOrder(page);
-    await verifications.verifyOrderPlacedSuccessfully(page);
-    await actions.clickDeleteAccount(page);
-    await verifications.verifyAccountDeleted(page);
+    await mod.checkout(page,paymentDetails);
+    await mod.deleteAccount(page);
 });

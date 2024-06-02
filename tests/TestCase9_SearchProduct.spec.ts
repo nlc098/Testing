@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import * as actions from '../helpers/actions.ts';
-import * as fill from '../helpers/fill.ts';
+import * as mod from '../helpers/mod.ts';
 import * as verifications from '../helpers/verifications.ts';
 
   test('Test Case 9: Search Product', async ({ page }) => {  
@@ -10,9 +10,7 @@ import * as verifications from '../helpers/verifications.ts';
       await actions.clickProducts(page);
       await verifications.verifyProducts(page);
       const productName = 'Blue'; // Nombre del producto a buscar
-      console.log(`Buscando el producto "${productName}"`);
-      await fill.searchProduct(page,productName);
-      await verifications.verifySearchedProductsAreVisible(page,productName);
+      await mod.searchProduct(page,productName)
     } catch (error) {
       console.error(error);
     } 

@@ -47,12 +47,18 @@ export async function verifyAccountCreated(page: Page) {
 }
 
 // Función para verificar que el usuario está logueado
-export async function verifyLoggedInAs(page: Page) {
+export async function verifyLoggedInAs(page: Page): Promise<string> {
     const loggedInAsText = await page.textContent(`a:has-text("Logged in as ")`);
     if (!loggedInAsText) {
-        throw new Error('Logged in as username no es visible');
+        throw new Error('Logged in as no es visible');
     }
-    console.log('Logged in as username es visible');
+    
+    // Extraer el nombre de usuario
+    const startIndex = loggedInAsText.indexOf('Logged in as ') + 'Logged in as '.length;
+    const username = loggedInAsText.substring(startIndex).trim();
+    console.log('Logged in as ', username);
+    
+    return username;
 }
 
 // Función para verificar que el texto "Your email or password is incorrect!" es visible

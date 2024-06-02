@@ -1,27 +1,39 @@
 import { test } from '@playwright/test';
 import * as actions from '../helpers/actions.ts';
-import * as fill from '../helpers/fill.ts';
 import * as verifications from '../helpers/verifications.ts';
+import * as mod from '../helpers/mod.ts';
 
 
 test('Test Case 1: Register User', async ({ page }) => {    
     try {
+
+      const registerUserData = {
+        name: 'NlC098',
+        email: 'nlc098@email.com',
+        password: '123',
+        day: '16',
+        month: '11',
+        year: '1998',
+        firstName: 'Nico',
+        lastName: 'Lepore',
+        company: 'Company',
+        address1: '8 de Octubre 1234',
+        address2: '18 de Julio 7894',
+        country: 'United States',
+        state: 'California',
+        city: 'Los Angeles',
+        zipcode: '90001',
+        mobileNumber: '1234567890'
+      };
+      
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
-      await actions.clickLoginSignup(page);
-      await verifications.verifySignup(page);
-      await fill.registerUser(page);
-      await actions.clickSignup(page);
-      await verifications.verifyEnterAccountInformation(page);
-      await fill.fillAccountDetails(page);
-      await actions.clickCreateAccount(page);
-      await verifications.verifyAccountCreated(page);
-      await actions.clickContinue(page);
-      await verifications.verifyLoggedInAs(page);
-      await actions.clickDeleteAccount(page);
-      await verifications.verifyAccountDeleted(page);
-      await actions.clickContinue(page);
+      await mod.signup(page,registerUserData);
+      await mod.deleteAccount(page)
+
     } catch (error) {
       console.error(error);
     } 
 });
+
+

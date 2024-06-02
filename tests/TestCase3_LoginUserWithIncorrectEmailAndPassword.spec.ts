@@ -1,19 +1,20 @@
 import { test } from '@playwright/test';
 import * as actions from '../helpers/actions.ts';
-import * as fill from '../helpers/fill.ts';
 import * as verifications from '../helpers/verifications.ts';
+import * as mod from '../helpers/mod.ts';
 
   test('Test Case 3: Login User with incorrect email and password', async ({ page }) => {  
     
     try {
 
+      const userLoginIncorrectData = {
+        email: 'asdqwerd@email.com',
+        password: '123'
+      }; 
+
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
-      await actions.clickLoginSignup(page);
-      await verifications.verifyLogin(page);
-      await fill.loggerUserIncorrect(page);
-      await actions.clickLogin(page);
-      await verifications.verifyUserIncorrect(page);
+      await mod.loginIncorrect(page,userLoginIncorrectData);
     } catch (error) {
       console.error(error);
     } 
