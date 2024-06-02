@@ -268,4 +268,42 @@ export async function verifyOrderPlacedSuccessfully(page: Page) {
     console.log('Order Placed! es visible');
 }
 
+// Función para verificar que el producto ha sido eliminado
+export async function verifyProductRemovedFromCart(page: Page) {
+        await page.waitForSelector('#empty_cart', { state: 'visible' });
+        const isEmpty = await page.isVisible('#empty_cart');
+        if (isEmpty) {
+            console.log('El carrito está vacío');
+        } else {
+            console.log('El carrito no está vacío');
+        }
+}
+
+// Función para verificar que aparecen las categorias
+export async function verifyCategiry(page: Page) {
+    const OrderPlaced = await page.textContent('h2:has-text("Category")');
+    if (!OrderPlaced) {
+        throw new Error('Category no es visible');
+    }
+    console.log('Category es visible');
+}
+
+// Función para verificar que aparece el texto "Women - Dress Products"
+export async function verifyWomenDressProducts(page: Page) {
+    const OrderPlaced = await page.textContent('h2:has-text("Women - Dress Products")');
+    if (!OrderPlaced) {
+        throw new Error('Women - Dress Products no es visible');
+    }
+    console.log('Women - Dress Products es visible');
+}
+
+// Función para verificar que aparece el texto "Women - Dress Products"
+export async function verifyMenJeansProducts(page: Page) {
+    const OrderPlaced = await page.textContent('h2:has-text("Men - Jeans Products")');
+    if (!OrderPlaced) {
+        throw new Error('Men - Jeans Products no es visible');
+    }
+    console.log('Men - Jeans Products es visible');
+}
+
 

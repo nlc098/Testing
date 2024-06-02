@@ -6,8 +6,7 @@ import * as fill from '../helpers/fill.ts';
 test('Test Case 14: Place Order: Register while Checkout', async ({ page }) => {
     await actions.navigateToHomePage(page);
     await verifications.verifyHomePage(page);
-    await actions.clickFirstProduct(page);
-    await actions.clickAddCart(page);
+    await actions.hoverFirstProductAndAddToCart(page);
     await actions.clickCartSec(page);
     await verifications.verifyCartPage(page);
     await actions.clickProceedToCheckout(page);

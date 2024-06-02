@@ -66,20 +66,26 @@ export async function clickHomeButton(page: Page) {
 
 }
 
+// Función para cerrar una publicidad si aparece
+export async function closeAdIfPresent(page: Page) {
+    try {
+        //const adFrame = page.frameLocator('iframe[name="aswift_6"]');
+        const closeButton = page.locator('div[class="btn skip"]');
+
+        // Verificar si el iframe de la publicidad está presente y visible
+        if (await closeButton.isVisible()) {
+            await closeButton.click();
+        } 
+    } catch (error) {
+        console.error('Error al intentar cerrar la publicidad:', error);
+    }
+}
+
 // Función para hacer clic en Test Cases
 export async function clickTestButton(page: Page) {
     await page.click('a:has-text(" Test Cases")');
     await closeAdIfPresent(page);
 
-}
-
-// Función para cerrar una publicidad si aparece
-export async function closeAdIfPresent(page: Page) {
-    try {
-        await page.frameLocator('iframe[name="aswift_6"]').getByLabel('Close ad').click();
-    } catch (error) {
-        console.error('Error al intentar cerrar la publicidad:', error);
-    }
 }
 
 // Función para hacer clic en Product
@@ -152,6 +158,7 @@ export async function increaseQuantity(page: Page) {
 //Función para hacer clic en 'ProceedToCheckout'
 export async function clickProceedToCheckout(page: Page) { 
     await page.click('a:has-text("Proceed To Checkout")');
+    await closeAdIfPresent(page);
 }
 
 //Función para hacer clic en 'RegisterOrLogin'
@@ -163,4 +170,30 @@ export async function clickRegisterOrLogin(page: Page) {
 //Función para hacer clic en 'pay-button'
 export async function payAndConfirmOrder(page: Page) { 
     await page.click('button[data-qa="pay-button"]');
+}
+
+//Función para hacer clic en 'x' para eliminar el primer producto
+export async function removeFirstProductFromCart(page: Page) {
+    await page.click('.cart_quantity_delete');
+}
+//Función para hacer clic en 'Women'
+export async function clickWomen(page: Page) {
+    await page.click('a[href="#Women"]');
+}
+
+//Función para hacer clic en 'Dress'
+export async function clickDress(page: Page) {
+    await page.click('a[href="/category_products/1"]');
+    await closeAdIfPresent(page);
+}
+
+//Función para hacer clic en 'Men'
+export async function clickMen(page: Page) {
+    await page.click('a[href="#Men"]');
+}
+
+//Función para hacer clic en 'Jeans'
+export async function clickJeans(page: Page) {
+    await page.click('a[href="/category_products/6"]');
+    await closeAdIfPresent(page);
 }
