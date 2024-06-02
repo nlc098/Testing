@@ -69,12 +69,12 @@ export async function clickHomeButton(page: Page) {
 // Función para cerrar una publicidad si aparece
 export async function closeAdIfPresent(page: Page) {
     try {
-        //const adFrame = page.frameLocator('iframe[name="aswift_6"]');
-        const closeButton = page.locator('div[class="btn skip"]');
+        // Selector para el botón de cierre de la publicidad
+        const closeButtonSelector = 'div[class="btn skip"]';
 
-        // Verificar si el iframe de la publicidad está presente y visible
-        if (await closeButton.isVisible()) {
-            await closeButton.click();
+        // Verificar si el botón de cierre de la publicidad está presente y visible
+        if (await page.isVisible(closeButtonSelector)) {
+            await page.click(closeButtonSelector);
         } 
     } catch (error) {
         console.error('Error al intentar cerrar la publicidad:', error);
@@ -176,24 +176,27 @@ export async function payAndConfirmOrder(page: Page) {
 export async function removeFirstProductFromCart(page: Page) {
     await page.click('.cart_quantity_delete');
 }
-//Función para hacer clic en 'Women'
-export async function clickWomen(page: Page) {
-    await page.click('a[href="#Women"]');
+// Función para hacer clic en una categoría
+export async function clickCategory(page: Page, category: string) {
+    await page.click(`a[href="#${category}"]`);
 }
 
-//Función para hacer clic en 'Dress'
-export async function clickDress(page: Page) {
-    await page.click('a[href="/category_products/1"]');
+// Función para hacer clic en una subcategoría
+export async function clickSubCategory(page: Page, subCategoryLink: string) {
+    await page.click(`a[href="${subCategoryLink}"]`);
     await closeAdIfPresent(page);
 }
 
-//Función para hacer clic en 'Men'
-export async function clickMen(page: Page) {
-    await page.click('a[href="#Men"]');
+export async function clickBrand(page: Page, brand: string) {
+    await page.click(`a[href="/brand_products/${brand}"]` );
 }
 
-//Función para hacer clic en 'Jeans'
-export async function clickJeans(page: Page) {
-    await page.click('a[href="/category_products/6"]');
-    await closeAdIfPresent(page);
+
+//No Funciona
+export async function addProductsToCart(page: Page) {
+    const addToCartButtons = await page.$$('a[class="btn btn-default add-to-cart"]');
+    for (const a of addToCartButtons) {
+        await a.click();
+        await clickContinueShoppingButton(page);
+    }
 }

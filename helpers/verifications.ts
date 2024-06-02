@@ -288,22 +288,31 @@ export async function verifyCategiry(page: Page) {
     console.log('Category es visible');
 }
 
-// Función para verificar que aparece el texto "Women - Dress Products"
-export async function verifyWomenDressProducts(page: Page) {
-    const OrderPlaced = await page.textContent('h2:has-text("Women - Dress Products")');
-    if (!OrderPlaced) {
-        throw new Error('Women - Dress Products no es visible');
+// Función para verificar que aparece el texto de la categoría y productos especificados
+export async function verifyCategoryProducts(page: Page, categoryProductsText: string) {
+    const isCategoryVisible = await page.isVisible(`h2:has-text("${categoryProductsText}")`);
+    if (!isCategoryVisible) {
+        throw new Error(`${categoryProductsText} no es visible`);
     }
-    console.log('Women - Dress Products es visible');
+    console.log(`${categoryProductsText} es visible`);
 }
 
-// Función para verificar que aparece el texto "Women - Dress Products"
-export async function verifyMenJeansProducts(page: Page) {
-    const OrderPlaced = await page.textContent('h2:has-text("Men - Jeans Products")');
-    if (!OrderPlaced) {
-        throw new Error('Men - Jeans Products no es visible');
+// Función para verificar que aparecen "Brands"
+export async function verifyBrandsVisible(page: Page) {
+    const brand = await page.waitForSelector('.brands_products');
+    if (!brand) {
+        throw new Error('Brandes no visible');
     }
-    console.log('Men - Jeans Products es visible');
+    console.log('Brand es visible');
 }
 
+
+// Función para verificar que aparece el titulo del producto Brands
+export async function verifyBrandPage(page: Page, brand: string) {
+    const brandp = await page.waitForSelector(`.features_items:has-text("${brand}")`);
+    if (!brandp) {
+        throw new Error(`${brand} no visible`);
+    }
+    console.log(`${brand} es visible`);
+}
 
