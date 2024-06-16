@@ -9,7 +9,7 @@ test('Test Case 1: Register User', async ({ page }) => {
 
       const registerUserData = {
         name: 'NlC098',
-        email: 'nlc098@email.com',
+        email: 'nlc0@email.com',
         password: '123',
         day: '16',
         month: '11',
