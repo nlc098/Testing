@@ -321,3 +321,7 @@ export async function verifyBrandPage(page: Page, brand: string) {
     console.log(`${brand} es visible`);
 }
 
+export async function verifyReviewSuccess(page: Page) {
+    await page.waitForSelector('div.alert-success:has-text("Thank you for your review.")');
+    console.log('El mensaje de éxito de reseña es visible');
+}

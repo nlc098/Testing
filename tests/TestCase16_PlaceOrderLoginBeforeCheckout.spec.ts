@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import * as actions from '../helpers/actions.ts';
 import * as fill from '../helpers/fill.ts';
 import * as verifications from '../helpers/verifications.ts';
@@ -24,6 +24,7 @@ test('Test Case 16: Place Order: Login before Checkout', async ({ page }) => {
 
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
+      await expect(page).toHaveScreenshot('home-page.png');
       await mod.login(page,userLoginData);
       await actions.hoverFirstProductAndAddToCart(page);
       await actions.clickCartSec(page);

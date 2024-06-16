@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import * as actions from '../helpers/actions.ts';
 import * as mod from '../helpers/mod.ts';
 import * as verifications from '../helpers/verifications.ts';
@@ -7,6 +7,7 @@ import * as verifications from '../helpers/verifications.ts';
     try {
         await actions.navigateToHomePage(page);
         await verifications.verifyHomePage(page);
+        await expect(page).toHaveScreenshot('home-page.png');
         await actions.clickCart(page);
         await mod.subscription(page)
     } catch (error) {

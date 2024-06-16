@@ -46,6 +46,12 @@ export interface PaymentDetails {
   message: string;
 }
 
+export interface ReviewDetails{
+  name: string;
+  email: string;
+  review: string;
+}
+
 // Función para registrar un nuevo usuario
 export async function registerUser(page: Page, userData: UserData) {
     await page.locator('input[data-qa="signup-name"]').fill(userData.name);
@@ -126,4 +132,10 @@ export async function enterPaymentDetails(page, paymentDetails: PaymentDetails) 
   await page.locator('input[data-qa="cvc"]').fill(paymentDetails.cvc);
   await page.locator('input[data-qa="expiry-month"]').fill(paymentDetails.expiryMonth);
   await page.locator('input[data-qa="expiry-year"]').fill(paymentDetails.expiryYear);
+}
+
+export async function enterReview(page, reviewDetails: ReviewDetails) {
+  await page.locator('input[id="name"]').fill(reviewDetails.name);
+  await page.locator('input[id="email"]').fill(reviewDetails.email);
+  await page.locator('textarea[id="review"]').fill(reviewDetails.review);
 }

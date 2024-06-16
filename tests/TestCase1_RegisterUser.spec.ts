@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import * as actions from '../helpers/actions.ts';
 import * as verifications from '../helpers/verifications.ts';
 import * as mod from '../helpers/mod.ts';
@@ -9,7 +9,7 @@ test('Test Case 1: Register User', async ({ page }) => {
 
       const registerUserData = {
         name: 'NlC098',
-        email: 'nlc0@email.com',
+        email: 'nlc098@email.com',
         password: '123',
         day: '16',
         month: '11',
@@ -28,12 +28,13 @@ test('Test Case 1: Register User', async ({ page }) => {
       
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
+      await expect(page).toHaveScreenshot('home-page.png');
       await mod.signup(page,registerUserData);
-      await mod.deleteAccount(page)
+      await expect(page).toHaveScreenshot('signup.png');
+      await mod.deleteAccount(page);
 
     } catch (error) {
       console.error(error);
     } 
 });
-
 

@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import * as actions from '../helpers/actions.ts';
 import * as mod from '../helpers/mod.ts';
 import * as verifications from '../helpers/verifications.ts';
@@ -14,6 +14,7 @@ import * as verifications from '../helpers/verifications.ts';
       
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
+      await expect(page).toHaveScreenshot('home-page.png');
       await mod.signupExist(page,userSignupData);
     } catch (error) {
       console.error(error);
