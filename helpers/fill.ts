@@ -87,9 +87,6 @@ export  async function signupUserExist(page: Page, userData: UserData) {
 
   }
 
-
-
-
   // Función para completar el formulario de contacto
 export async function fillContactForm(page: Page, contactUsData: ContactUsData) {
     await page.locator('input[data-qa="name"]').fill(contactUsData.name);
