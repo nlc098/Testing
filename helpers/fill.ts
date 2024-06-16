@@ -75,15 +75,9 @@ export async function fillAccountDetails(page: Page, userData: UserData) {
 
   // Función para loguear
 export async function loggerUser(page: Page, userData: UserData) {
-    await page.locator('input[data-qa="login-password"]').fill(userData.password);
     await page.locator('input[data-qa="login-email"]').fill(userData.email);
+    await page.locator('input[data-qa="login-password"]').fill(userData.password);
 }
-
-  // Función para loguear
-export  async function loggerUserIncorrect(page: Page, userData: UserData) {
-    await page.locator('input[data-qa="login-password"]').fill(userData.password);
-    await page.locator('input[data-qa="login-email"]').fill(userData.email);
-  }
 
   // Función para signupUser que existe
 export  async function signupUserExist(page: Page, userData: UserData) {

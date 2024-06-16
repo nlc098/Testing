@@ -52,7 +52,6 @@ export async function verifyLoggedInAs(page: Page): Promise<string> {
     if (!loggedInAsText) {
         throw new Error('Logged in as no es visible');
     }
-    
     // Extraer el nombre de usuario
     const startIndex = loggedInAsText.indexOf('Logged in as ') + 'Logged in as '.length;
     const username = loggedInAsText.substring(startIndex).trim();

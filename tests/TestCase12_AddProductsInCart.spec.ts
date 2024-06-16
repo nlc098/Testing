@@ -9,7 +9,7 @@ test('Test Case 12: Add Products in Cart', async ({ page }) => {
   await actions.hoverFirstProductAndAddToCart(page);
   await actions.clickContinueShoppingButton(page);
   await actions.hoverSecondProductAndAddToCart(page);
-  await actions.clickCart(page);
+  await actions.clickCartSec(page);
   await verifications.verifyProductsAddedToCart(page);
   await verifications.verifyProductDetailsInCart(page)
 });

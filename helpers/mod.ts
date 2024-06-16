@@ -20,7 +20,7 @@ export async function login(page, userData) {
 export async function loginIncorrect(page, userData) {
     await actions.clickLoginSignup(page);
     await verifications.verifyLogin(page);
-    await fill.loggerUserIncorrect(page,userData);
+    await fill.loggerUser(page,userData);
     await actions.clickLogin(page);
     await verifications.verifyUserIncorrect(page); 
 }

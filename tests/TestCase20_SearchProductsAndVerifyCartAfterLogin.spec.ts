@@ -12,7 +12,7 @@ test('Test Case 20: Search Products and Verify Cart After Login', async ({ page 
         password: '123'
       };
 
-    await actions.navigateToHomePage(page);
+      await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
       await actions.clickProducts(page);
       await verifications.verifyProducts(page);

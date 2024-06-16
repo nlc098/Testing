@@ -12,8 +12,8 @@ import * as verifications from '../helpers/verifications.ts';
         name: 'user',
         subject: 'asdasd',
         message:'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        //el archivo debe estar en la ruta de la siguiente linea
         filePath: 'C:\\Users\\Usuario\\Desktop\\Testing\\tests\\file.txt'
-      
       };
 
       await actions.navigateToHomePage(page);
