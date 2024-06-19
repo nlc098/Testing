@@ -12,6 +12,7 @@
     "@types/node": "^20.12.12"
   },
   "dependencies": {
-    "@applitools/eyes-playwright": "^1.28.1"
+    "@applitools/eyes-playwright": "^1.28.1",
+    "playwright": "^1.44.1"
   }
 }

@@ -66,21 +66,44 @@ export async function clickHomeButton(page: Page) {
 
 }
 
-// Función para cerrar una publicidad si aparece
+//Publicidad
 export async function closeAdIfPresent(page: Page) {
     try {
         // Selector para el botón de cierre de la publicidad
         const closeButtonSelector = 'div[class="btn skip"]';
 
-        // Verificar si el botón de cierre de la publicidad está presente y visible
-        if (await page.isVisible(closeButtonSelector)) {
-            await page.click(closeButtonSelector);
-        } 
+        // Función interna para manejar el clic en el botón dentro del iframe
+        const clickCloseButtonInFrame = async () => {
+            try {
+                const frames = page.frames();
+                for (const frame of frames) {
+                    if (await frame.isVisible(closeButtonSelector)) {
+                        await frame.click(closeButtonSelector);
+                        console.log('Se cerró la publicidad correctamente.');
+                        return true;
+                    }
+                }
+                return false;
+            } catch (error) {
+                console.error('Error al intentar cerrar la publicidad dentro del iframe:', error);
+                return false;
+            }
+        };
+
+        // Verificar si la publicidad está dentro de un iframe y cerrarla si está presente
+        if (!(await clickCloseButtonInFrame())) {
+            // Si la publicidad no está dentro de un iframe, intenta cerrarla directamente en la página
+            if (await page.isVisible(closeButtonSelector)) {
+                await page.click(closeButtonSelector);
+                console.log('Se cerró la publicidad correctamente.');
+            } else {
+                console.warn('El botón de cierre de la publicidad no está visible en la página actual.');
+            }
+        }
     } catch (error) {
         console.error('Error al intentar cerrar la publicidad:', error);
     }
 }
-
 // Función para hacer clic en Test Cases
 export async function clickTestButton(page: Page) {
     await page.click('a:has-text(" Test Cases")');

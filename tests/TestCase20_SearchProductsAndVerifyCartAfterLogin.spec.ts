@@ -3,7 +3,6 @@ import * as actions from '../helpers/actions.ts';
 import * as verifications from '../helpers/verifications.ts';
 import * as mod from '../helpers/mod.ts';
 
-//No funciona
 test('Test Case 20: Search Products and Verify Cart After Login', async ({ page }) => {    
     try {
 
