@@ -27,6 +27,15 @@ export async function verifyLogin(page: Page) {
     console.log('Login to your account! es visible');
 }
 
+// Función para verificar que el texto "Login to your account" es visible
+export async function verifyFeaturedProducts(page: Page) {
+    const newUserLoginText = await page.textContent('h2:has-text("FEATURES ITEMS")');
+    if (!newUserLoginText) {
+        throw new Error('FEATURES ITEMS no es visible');
+    }
+    console.log('FEATURES ITEMS es visible');
+}
+
 
 // Función para verificar que el texto "ENTER ACCOUNT INFORMATION" es visible
 export async function verifyEnterAccountInformation(page: Page) {

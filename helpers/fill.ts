@@ -78,13 +78,13 @@ export async function fillAccountDetails(page: Page, userData: UserData) {
     await page.locator('input[id="mobile_number"]').fill(userData.mobileNumber);
 }
 
-  // Función para loguear
+// Función para loguear
 export async function loggerUser(page: Page, userData: UserData) {
     await page.locator('input[data-qa="login-email"]').fill(userData.email);
     await page.locator('input[data-qa="login-password"]').fill(userData.password);
 }
 
-  // Función para signupUser que existe
+// Función para signupUser que existe
 export  async function signupUserExist(page: Page, userData: UserData) {
     await page.locator('input[data-qa="signup-name"]').fill(userData.name);
     await page.locator('input[data-qa="signup-email"]').fill(userData.email);
@@ -92,7 +92,7 @@ export  async function signupUserExist(page: Page, userData: UserData) {
 
   }
 
-  // Función para completar el formulario de contacto
+// Función para completar el formulario de contacto
 export async function fillContactForm(page: Page, contactUsData: ContactUsData) {
     await page.locator('input[data-qa="name"]').fill(contactUsData.name);
     await page.locator('input[data-qa="email"]').fill(contactUsData.email);
@@ -108,22 +108,17 @@ export async function searchProduct(page: Page, productName: string) {
   await page.click('button[id="submit_search"]')
 }
 
-
-
-
 // Función para ingresar el correo electrónico y hacer clic en el botón
 export async function enterEmailAndSubscribe(page: Page, email: string) {
   await page.locator('input[type="email"]').fill(email);
   await page.click('button[type="submit"]');
 }
 
-
 // Función para ingresar el correo electrónico y hacer clic en el botón
 export async function enterDescriptionAndPlaceOrder(page,contactUsData: ContactUsData) {
   await page.locator('textarea[class="form-control"]').fill(contactUsData.message);
   await page.click('a[href="/payment"]');
 }
-
 
 export async function enterPaymentDetails(page, paymentDetails: PaymentDetails) {
   await page.locator('input[data-qa="name-on-card"]').fill(paymentDetails.nameOnCard);

@@ -63,7 +63,6 @@ export async function submitForm(page: Page) {
 // Función para volver a la página principal
 export async function clickHomeButton(page: Page) {
     await page.click('a:has-text("Home")');
-
 }
 
 //Publicidad
@@ -108,21 +107,18 @@ export async function closeAdIfPresent(page: Page) {
 export async function clickTestButton(page: Page) {
     await page.click('a:has-text(" Test Cases")');
     await closeAdIfPresent(page);
-
 }
 
 // Función para hacer clic en Product
 export async function clickProducts(page: Page) {
     await page.click('a[href="/products"]');
     await closeAdIfPresent(page);
-
 }
 
 // Función para verificar la página de detalles del producto
 export async function clickFirstProduct(page: Page) {
     await page.locator('.features_items .col-sm-4').first().locator('.choose a').click();
     await closeAdIfPresent(page);
-
 }
 
 // Función para desplazarse hacia abajo hasta el pie de página
@@ -131,6 +127,7 @@ export async function scrollToFooter(page: Page) {
         window.scrollTo(0, document.body.scrollHeight);
     });
 }
+
 //Función para hacer clic en 'Cart' del navbar
 export async function clickCart(page: Page) {
     await page.click('a[href="/view_cart"]');
@@ -171,12 +168,10 @@ export async function hoverSecondProductAndAddToCart(page: Page) {
     await page.click(addToCartButtonSelector);
 }
 
-
 // Función para aumentar la cantidad del producto a 4 y agregarlo al carrito
 export async function increaseQuantity(page: Page) {
     await page.locator('#quantity').fill('4');
 }
-
 
 //Función para hacer clic en 'ProceedToCheckout'
 export async function clickProceedToCheckout(page: Page) {
@@ -188,7 +183,6 @@ export async function clickProceedToCheckout(page: Page) {
 export async function clickRegisterOrLogin(page: Page) {
     await page.click('a:has-text("Register / Login")');
 }
-
 
 //Función para hacer clic en 'pay-button'
 export async function payAndConfirmOrder(page: Page) {
@@ -221,6 +215,18 @@ export async function addProductsToCart(page: Page) {
     for (const a of addToCartButtons) {
         await a.click();
         await clickContinueShoppingButton(page);
+    }
+}
+
+export async function addFeaturesProductsToCart(page: Page, n: number) {
+    const addToCartButtons = await page.$$('div.productinfo a.btn.btn-default.add-to-cart');
+    for (let i = 0; i < n && i < addToCartButtons.length; i++) {
+        try {
+            await addToCartButtons[i].click();
+            await clickContinueShoppingButton(page);
+        } catch (error) {
+            console.error('Error clicking "Add to Cart" button:', error);
+        }
     }
 }
 
