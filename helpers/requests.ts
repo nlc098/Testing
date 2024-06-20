@@ -30,24 +30,22 @@ export async function get(endpoint, requestData = {}) {
 // POST Request
 export async function post(endpoint, requestData = {}) {
     const apiRequestContext = await request.newContext();
-    
+
     const response = await apiRequestContext.post(baseURL + endpoint, {
         data: JSON.stringify(requestData),
         headers: {
             'Content-Type': 'application/json',
         },
     });
-    console.log(response.status());
+
     console.log(`[Status: ${response.status()}] POST -> ${baseURL}${endpoint}`);
 
     return response;
 }
 
 // PUT Request
-export async function put(endpoint) {
+export async function put(endpoint, requestData = {}) {
     const apiRequestContext = await request.newContext();
-
-    const requestData = {};
 
     const response = await apiRequestContext.put(baseURL + endpoint, {
         data: JSON.stringify(requestData),
@@ -64,7 +62,7 @@ export async function put(endpoint) {
 // DELETE Request
 export async function reqDelete(endpoint) {
     const apiRequestContext = await request.newContext();
-
+    
     const response = await apiRequestContext.delete(baseURL + endpoint, {
         headers: {
             'Content-Type': 'application/json',
