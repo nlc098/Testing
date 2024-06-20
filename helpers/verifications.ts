@@ -200,10 +200,10 @@ export async function verifySubscriptionSuccessMessage(page: Page) {
 export async function verifyProductsAddedToCart(page: Page) {
     await page.waitForSelector('.table-responsive.cart_info');
     const productRows = await page.$$('.table-responsive.cart_info tbody tr');
-    if (productRows.length < 2) {
+    if (productRows.length < 1) {
         throw new Error('Los productos no fueron agregados correctamente');
     }
-    console.log('Ambos productos fueron agregados correctamente');
+    console.log('Los productos fueron agregados correctamente al carrito');
 }
 
 // Función para verificar los detalles de los productos

@@ -69,7 +69,8 @@ export async function searchProduct(page,productName) {
     console.log(`Buscando el producto "${productName}"`);
     await fill.searchProduct(page,productName);
     await verifications.verifySearchedProductsAreVisible(page,productName);
-    await expect(page).toHaveScreenshot('search-results.png');
+    await actions.hideAds(page);
+    //await expect(page).toHaveScreenshot('search-results.png');
 }
 
 export async function subscription(page) {

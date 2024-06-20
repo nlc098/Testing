@@ -7,8 +7,7 @@ import {Page} from '@playwright/test';
     headless: false,
 */
 
-const URL = 'http://automationexercise.com';
-  
+export const URL = 'http://automationexercise.com';
 
 export interface UserData {
   name: string;
