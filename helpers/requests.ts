@@ -15,13 +15,12 @@ export async function get(endpoint, requestData = {}) {
     // Construct query parameters from requestData
     const queryParams = new URLSearchParams(requestData).toString();
     const urlWithParams = `${baseURL}${endpoint}?${queryParams}`;
-    
+    console.log("URL COMPLETA: ",urlWithParams);
     const response = await apiRequestContext.get(urlWithParams, {
         headers: {
             'Content-Type': 'application/json',
         },
     });
-    
     console.log(`[Status: ${response.status()}] GET -> ${urlWithParams}`);
 
     return response;
