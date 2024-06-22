@@ -255,3 +255,13 @@ export async function hideAds(page: Page) {
         console.log('El elemento no está visible.');
     }
 }
+
+export async function clickArrow(page: Page) {
+    await page.click('#scrollUp');
+}
+
+export async function scrollToTop(page: Page) {
+    await page.evaluate(() => {
+        window.scrollTo(0, 0);
+    });
+}

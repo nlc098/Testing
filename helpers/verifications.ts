@@ -383,3 +383,11 @@ export async function verifyBillingAdress(page: Page, registerUserData) {
         }
     }    
 }
+
+export async function verifyFullFledged(page: Page) {
+    const fullFledgedText = await page.textContent('h2:has-text("Full-Fledged practice website for Automation Engineers")');
+    if (!fullFledgedText) {
+        throw new Error('Full-Fledged text not visible');
+    }
+    console.log('Full-Fledged text visible');
+}
