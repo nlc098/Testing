@@ -334,3 +334,52 @@ export async function verifyReviewSuccess(page: Page) {
     await page.waitForSelector('div.alert-success:has-text("Thank you for your review.")');
     console.log('El mensaje de éxito de reseña es visible');
 }
+
+// Función para verificar que aparece los RECOMENDED ITEMS
+export async function verifyRecommendedItems(page: Page) {     
+    const recommendedItems = await page.textContent('h2:has-text("recommended items")');     
+    if (!recommendedItems) {         
+        throw new Error('Recommended Items not visible');     
+    }    
+    console.log('Recommended Items visible'); 
+}
+
+
+export async function verifyDeliveryAdress(page: Page, registerUserData) {     
+    console.log('entre 1');
+    const deliveryAdress = await page.textContent('h3:has-text("Your delivery address")');     
+    if (deliveryAdress) {  
+        console.log(registerUserData.address1);       
+        const registerUser = await page.textContent(`"${registerUserData.address1}"`); 
+        console.log('entre 3');
+        if(!registerUser){
+            throw new Error('Direccion 1 erronea');
+        }else{
+            console.log('Direccion 1 correcta');
+        }
+        const registerUser2 = await page.textContent(`"${registerUserData.address2}"`); 
+        if(!registerUser2){
+            throw new Error('Direccion 2 erronea');
+        }else{
+            console.log('Direccion 2 correcta');
+        }
+    }    
+}
+
+export async function verifyBillingAdress(page: Page, registerUserData) {     
+    const deliveryAdress = await page.textContent('h3:has-text("Your billing address")');     
+    if (deliveryAdress) {         
+        const registerUser = await page.textContent(`"${registerUserData.address1}"`); 
+        if(!registerUser){
+            throw new Error('Direccion 1 erronea');
+        }else{
+            console.log('Direccion 1 correcta');
+        }
+        const registerUser2 = await page.textContent(`"${registerUserData.address2}"`); 
+        if(!registerUser2){
+            throw new Error('Direccion 2 erronea');
+        }else{
+            console.log('Direccion 2 correcta');
+        }
+    }    
+}

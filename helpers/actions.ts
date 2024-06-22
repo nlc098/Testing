@@ -159,6 +159,15 @@ export async function hoverFirstProductAndAddToCart(page: Page) {
     await page.click(addToCartButtonSelector);
 }
 
+//Hace hover sobre el primer producto Recomendado y hace clic en 'Add to cart'.
+export async function hoverFirstRecommendedProductAndAddToCart(page: Page) {
+    const addToCartButtonSelector = 'a[data-product-id="4"]';
+    await page.waitForSelector(addToCartButtonSelector);
+    await page.hover(addToCartButtonSelector);
+    await page.waitForTimeout(500); // Ajusta el tiempo según sea necesario
+    await page.click(addToCartButtonSelector);
+}
+
 //Hace hover sobre el segundo producto y hace clic en 'Add to cart'.
 export async function hoverSecondProductAndAddToCart(page: Page) {
     const addToCartButtonSelector = 'a[data-product-id="2"]';

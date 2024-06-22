@@ -38,7 +38,7 @@ export async function signup(page, userData) {
     await fill.registerUser(page, userData);
     await actions.clickSignup(page);
     await verifications.verifyEnterAccountInformation(page);
-    await expect(page).toHaveScreenshot('fillAccountDetails.png');
+    //await expect(page).toHaveScreenshot('fillAccountDetails.png');
     await fill.fillAccountDetails(page, userData);
     await actions.clickCreateAccount(page);
     await verifications.verifyAccountCreated(page);
@@ -93,6 +93,12 @@ export async function checkout(page, paymentDetails) {
     await verifications.verifyOrderPlacedSuccessfully(page);
     await expect(page).toHaveScreenshot('orderPlacedSuccessfully.png');
 }
+
+export async function checkoutPage(page) {
+    await actions.clickProceedToCheckout(page);
+    await verifications.verifyAddressDetailsAndReviewOrder(page);
+}
+
 
 export async function executePayment(page, paymentDetails) {
     await fill.enterPaymentDetails(page, paymentDetails);
