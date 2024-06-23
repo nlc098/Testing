@@ -9,7 +9,7 @@ import * as verifications from '../../helpers/verifications.ts';
       await actions.scrollToFooter(page);
       await verifications.verifyRecommendedItems(page);
       await actions.hoverFirstRecommendedProductAndAddToCart(page);
-      await actions.clickCart(page);
+      await actions.clickCartSec(page);
       await verifications.verifyProductsAddedToCart(page);
     } catch (error) {
       console.error(error);

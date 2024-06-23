@@ -73,3 +73,18 @@ export async function reqDelete(endpoint) {
 
     return response;
 }
+
+export async function reqDeleteAccount(endpoint, requestData = {}) {
+    const apiRequestContext = await request.newContext();
+    
+    const response = await apiRequestContext.delete(baseURL + endpoint, {
+        data: JSON.stringify(requestData),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    console.log(`[Status: ${response.status()}] DELETE -> ${baseURL}${endpoint}`);
+
+    return response;
+}
