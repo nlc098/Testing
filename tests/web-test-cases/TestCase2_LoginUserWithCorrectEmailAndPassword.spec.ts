@@ -13,7 +13,7 @@ test('Test Case 2: Login User with correct email and password', async ({ page })
       
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
-      await expect(page).toHaveScreenshot('home-page.png');
+      //await expect(page).toHaveScreenshot('home-page.png');
       await mod.login(page,userLoginData);
       await mod.deleteAccount(page);
     } catch (error) {

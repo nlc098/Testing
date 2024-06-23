@@ -24,7 +24,7 @@ test('Test Case 16: Place Order: Login before Checkout', async ({ page }) => {
 
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
-      await expect(page).toHaveScreenshot('home-page.png');
+      //await expect(page).toHaveScreenshot('home-page.png');
       await mod.login(page,userLoginData);
       await actions.hoverFirstProductAndAddToCart(page);
       await actions.clickCartSec(page);

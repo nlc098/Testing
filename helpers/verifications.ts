@@ -346,22 +346,19 @@ export async function verifyRecommendedItems(page: Page) {
 
 
 export async function verifyDeliveryAdress(page: Page, registerUserData) {     
-    console.log('entre 1');
     const deliveryAdress = await page.textContent('h3:has-text("Your delivery address")');     
-    if (deliveryAdress) {  
-        console.log(registerUserData.address1);       
+    if (deliveryAdress) {        
         const registerUser = await page.textContent(`"${registerUserData.address1}"`); 
-        console.log('entre 3');
         if(!registerUser){
-            throw new Error('Direccion 1 erronea');
+            throw new Error('Direccion delivery 1 erronea');
         }else{
-            console.log('Direccion 1 correcta');
+            console.log('Direccion delivery 1 correcta');
         }
         const registerUser2 = await page.textContent(`"${registerUserData.address2}"`); 
         if(!registerUser2){
-            throw new Error('Direccion 2 erronea');
+            throw new Error('Direccion delivery 2 erronea');
         }else{
-            console.log('Direccion 2 correcta');
+            console.log('Direccion delivery 2 correcta');
         }
     }    
 }
@@ -371,15 +368,15 @@ export async function verifyBillingAdress(page: Page, registerUserData) {
     if (deliveryAdress) {         
         const registerUser = await page.textContent(`"${registerUserData.address1}"`); 
         if(!registerUser){
-            throw new Error('Direccion 1 erronea');
+            throw new Error('Direccion billing 1 erronea');
         }else{
-            console.log('Direccion 1 correcta');
+            console.log('Direccion billing 1 correcta');
         }
         const registerUser2 = await page.textContent(`"${registerUserData.address2}"`); 
         if(!registerUser2){
-            throw new Error('Direccion 2 erronea');
+            throw new Error('Direccion billing 2 erronea');
         }else{
-            console.log('Direccion 2 correcta');
+            console.log('Direccion billing 2 correcta');
         }
     }    
 }

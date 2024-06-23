@@ -15,8 +15,8 @@ test('Test Case 24: Download Invoice after purchase order', async ({ page }) => 
         };
 
         const registerUserData = {
-            name: 'yona',
-            email: 'yona@email.com',
+            name: 'pepe',
+            email: 'pepe1234@email.com',
             password: '123',
             day: '16',
             month: '11',

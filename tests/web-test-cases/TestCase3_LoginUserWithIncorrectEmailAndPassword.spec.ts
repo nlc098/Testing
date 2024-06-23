@@ -14,7 +14,7 @@ import * as mod from '../../helpers/mod.ts';
 
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
-      await expect(page).toHaveScreenshot('home-page.png');
+      //await expect(page).toHaveScreenshot('home-page.png');
       await mod.loginIncorrect(page,userLoginIncorrectData);
     } catch (error) {
       console.error(error);

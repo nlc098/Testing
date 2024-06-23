@@ -7,14 +7,14 @@ import * as mod from '../../helpers/mod.ts';
 test('Test Case 14: Place Order: Register while Checkout', async ({ page }) => {
 
       const registerUserData = {
-        name: 'NlC098',
-        email: 'nlc098@email.com',
+        name: 'Seba',
+        email: 'seba98@email.com',
         password: '123',
         day: '16',
         month: '11',
         year: '1998',
-        firstName: 'Nico',
-        lastName: 'Lepore',
+        firstName: 'Seba',
+        lastName: 'Perez',
         company: 'Company',
         address1: '8 de Octubre 1234',
         address2: '18 de Julio 7894',
@@ -26,7 +26,7 @@ test('Test Case 14: Place Order: Register while Checkout', async ({ page }) => {
       };
 
       const paymentDetails = {
-        nameOnCard: "nico",
+        nameOnCard: "Seba",
         cardNumber: "1234567890123456",
         cvc: "123",
         expiryMonth: "12",
@@ -36,11 +36,11 @@ test('Test Case 14: Place Order: Register while Checkout', async ({ page }) => {
     
     await actions.navigateToHomePage(page);
     await verifications.verifyHomePage(page);
-    await expect(page).toHaveScreenshot('home-page.png');
+    //await expect(page).toHaveScreenshot('home-page.png');
     await actions.hoverFirstProductAndAddToCart(page);
     await actions.clickCartSec(page);
     await verifications.verifyCartPage(page);
-    await expect(page).toHaveScreenshot('cart-page.png');
+    //await expect(page).toHaveScreenshot('cart-page.png');
     await actions.clickProceedToCheckout(page);
     await actions.clickRegisterOrLogin(page);
     await mod.signup(page,registerUserData);

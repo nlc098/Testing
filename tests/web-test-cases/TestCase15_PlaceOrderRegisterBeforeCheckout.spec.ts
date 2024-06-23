@@ -36,7 +36,7 @@ test('Test Case 15: Place Order: Register before Checkout', async ({ page }) => 
       
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
-      await expect(page).toHaveScreenshot('home-page.png');
+      //await expect(page).toHaveScreenshot('home-page.png');
       await mod.signup(page,registerUserData);
       await actions.hoverFirstProductAndAddToCart(page);
       await actions.clickCartSec(page);

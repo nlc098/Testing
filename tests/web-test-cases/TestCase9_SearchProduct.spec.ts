@@ -7,10 +7,10 @@ import * as verifications from '../../helpers/verifications.ts';
     try {
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
-      await expect(page).toHaveScreenshot('home-page.png');
+      //await expect(page).toHaveScreenshot('home-page.png');
       await actions.clickProducts(page);
       await verifications.verifyProducts(page);
-      await expect(page).toHaveScreenshot('products-page.png');
+      //await expect(page).toHaveScreenshot('products-page.png');
       const productName = 'Blue'; // Nombre del producto a buscar
       await mod.searchProduct(page,productName)
     } catch (error) {

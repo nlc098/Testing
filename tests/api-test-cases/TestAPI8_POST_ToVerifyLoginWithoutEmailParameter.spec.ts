@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 
 import * as apiRequest from '../../helpers/requests.ts';
 
-test('API 5: POST To Search Product', async () => {
+test('API 8: POST To Verify Login without email parameter', async () => {
     const passwordData = {
         password: '12345678910'
     };
