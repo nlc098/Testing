@@ -10,8 +10,6 @@ test('API 1: Get All Products List', async () => {
 
     await apiRequest.checkResponseCode(responseBody, 200);
 
-    console.log(JSON.stringify(responseBody, null, 2));
-
     // Asegurarse de que la respuesta contenga una lista de productos
     const products = responseBody.products;
     expect(Array.isArray(products)).toBeTruthy();

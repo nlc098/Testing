@@ -19,13 +19,12 @@ test('API 7: POST To Verify Login with valid details', async () => {
         password: '123'
     };
 
-    console.log('Request Data:', JSON.stringify(loginDetails));
     const response = await apiRequest.post('/verifyLogin', loginDetails);
 
     const responseBody = await response.json();
 
-    // comentado para que no de conflico ya que por error no devuelve lo esperado
+    // No devuelve el responseCode esperado
     // await apiRequest.checkResponseCode(responseBody, 200);
 
-    console.log(JSON.stringify(responseBody, null, 2));
+    console.log("\nResponse Body = " + JSON.stringify(responseBody, null, 2));
 });

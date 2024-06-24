@@ -10,6 +10,4 @@ test('API 5: POST To Search Product without search_product parameter', async () 
     const responseBody = await response.json();
 
     await apiRequest.checkResponseCode(responseBody, 400);
-
-    console.log(JSON.stringify(responseBody, null, 2));
 });

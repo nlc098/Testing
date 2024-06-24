@@ -33,13 +33,12 @@ test('API 11: POST To Create/Register User Account', async () => {
         mobile_number: '123-456-7890'
     };
 
-    console.log('Request Data:', JSON.stringify(userDetails));
     const response = await apiRequest.post('/createAccount', userDetails);
 
     const responseBody = await response.json();
 
-   //comentado para que no de conflicto ya que no devuelve lo que debería
-   //await apiRequest.checkResponseCode(responseBody, 201);
+   // No devuelve el responseCode esperado
+   // await apiRequest.checkResponseCode(responseBody, 201);
 
-    console.log(JSON.stringify(responseBody, null, 2));
+   console.log("\nResponse Body = " + JSON.stringify(responseBody, null, 2));
 });

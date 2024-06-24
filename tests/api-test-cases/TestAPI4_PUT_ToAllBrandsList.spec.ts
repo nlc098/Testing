@@ -8,6 +8,4 @@ test('API 4: PUT To All Brands List', async () => {
     const responseBody = await response.json();
 
     await apiRequest.checkResponseCode(responseBody, 405);
-
-    console.log(JSON.stringify(responseBody, null, 2));
 });

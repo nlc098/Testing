@@ -24,11 +24,12 @@ test('API 12: DELETE METHOD To Delete User Account', async () => {
         password: '123'
     };
 
-    const response = await apiRequest.reqDeleteAccount('/deleteAccount', loginData);
+    const response = await apiRequest.reqDelete('/deleteAccount', loginData);
 
     const responseBody = await response.json();
 
-    //await apiRequest.checkResponseCode(responseBody, 405);
+    // No devuelve el responseCode esperado
+    // await apiRequest.checkResponseCode(responseBody, 405);
 
-    console.log(JSON.stringify(responseBody, null, 2));
+    console.log("\nResponse Body = " + JSON.stringify(responseBody, null, 2));
 });

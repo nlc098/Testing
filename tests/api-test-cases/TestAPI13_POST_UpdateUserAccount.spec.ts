@@ -33,13 +33,13 @@ test('API 13: PUT METHOD To Update User Account', async () => {
         city: 'Montevideo',
         mobile_number: '123-456-7890'
     };
-    console.log('Request Data:', JSON.stringify(userDetails));
+    
     const response = await apiRequest.put('/updateAccount',userDetails);
 
     const responseBody = await response.json();
 
-    //comentado para que no de conflicto ya que no devuelve lo que debería
-    //await apiRequest.checkResponseCode(responseBody, 200);
-
-    console.log(JSON.stringify(responseBody, null, 2));
+    // No devuelve el responseCode esperado
+    // await apiRequest.checkResponseCode(responseBody, 200);
+    
+    console.log("\nResponse Body = " + JSON.stringify(responseBody, null, 2));
 });

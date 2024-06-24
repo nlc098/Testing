@@ -18,12 +18,12 @@ test('API 5: POST To Search Product', async () => {
         search_product: 'tshirt'
     };
 
-    console.log('Request Data:', JSON.stringify(productData));
     const response = await apiRequest.post('/searchProduct', productData);
 
     const responseBody = await response.json();
 
-    //await apiRequest.checkResponseCode(responseBody, 200);
+    // No devuelve el responseCode esperado
+    // await apiRequest.checkResponseCode(responseBody, 200);
 
-    console.log(JSON.stringify(responseBody, null, 2));
+    console.log("\nResponse Body = " + JSON.stringify(responseBody, null, 2));
 });
