@@ -159,18 +159,18 @@ export async function hoverFirstProductAndAddToCart(page: Page) {
     await page.click(addToCartButtonSelector);
 }
 
-//Hace hover sobre el primer producto Recomendado y hace clic en 'Add to cart'.
-export async function hoverFirstRecommendedProductAndAddToCart(page: Page) {
-    const addToCartButtonSelector = 'div[id=recommended-item-carousel] a[data-product-id="4"]';
+//Hace hover sobre el segundo producto y hace clic en 'Add to cart'.
+export async function hoverSecondProductAndAddToCart(page: Page) {
+    const addToCartButtonSelector = 'a[data-product-id="2"]';
     await page.waitForSelector(addToCartButtonSelector);
     await page.hover(addToCartButtonSelector);
     await page.waitForTimeout(500); // Ajusta el tiempo según sea necesario
     await page.click(addToCartButtonSelector);
 }
 
-//Hace hover sobre el segundo producto y hace clic en 'Add to cart'.
-export async function hoverSecondProductAndAddToCart(page: Page) {
-    const addToCartButtonSelector = 'div[id=recommended-item-carousel] a[data-product-id="2"]';
+//Hace hover sobre el primer producto Recomendado y hace clic en 'Add to cart'.
+export async function hoverFirstRecommendedProductAndAddToCart(page: Page) {
+    const addToCartButtonSelector = 'div[id=recommended-item-carousel] a[data-product-id="4"]';
     await page.waitForSelector(addToCartButtonSelector);
     await page.hover(addToCartButtonSelector);
     await page.waitForTimeout(500); // Ajusta el tiempo según sea necesario
@@ -251,9 +251,7 @@ export async function hideAds(page: Page) {
         // Espera a que el elemento esté presente en el DOM
         await page.waitForSelector(selector, { state: 'attached' });
         await page.click(selector);
-    } else {
-        console.log('El elemento no está visible.');
-    }
+    } 
 }
 
 export async function clickArrow(page: Page) {

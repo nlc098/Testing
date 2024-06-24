@@ -19,6 +19,7 @@ test('API 10: POST To Verify Login with invalid details', async () => {
         email: "a@b.com",
         password: 123
     };
+    console.log('Request Data:', JSON.stringify(loginData));
 
     const response = await apiRequest.post('/verifyLogin', loginData);
 

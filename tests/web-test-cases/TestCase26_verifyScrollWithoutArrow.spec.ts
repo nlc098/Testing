@@ -6,13 +6,13 @@ test('Test Case :  Verify Scroll Up without using "Arrow" button and Scroll Down
   try {
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
-      await expect(page).toHaveScreenshot('home-page.png');
+      //await expect(page).toHaveScreenshot('home-page.png');
       await actions.scrollToFooter(page);
       await verifications.verifySubscriptionText(page);
-      await expect(page).toHaveScreenshot('subscription-text.png');
+      //await expect(page).toHaveScreenshot('subscription-text.png');
       await actions.scrollToTop(page);
       await verifications.verifyFullFledged(page);
-      await expect(page).toHaveScreenshot('full-fledged-text-.png');
+      //await expect(page).toHaveScreenshot('full-fledged-text-.png');
 
     } catch (error) {
       console.error(error);

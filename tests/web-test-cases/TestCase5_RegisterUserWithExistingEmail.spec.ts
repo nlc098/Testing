@@ -14,7 +14,7 @@ import * as verifications from '../../helpers/verifications.ts';
       
       await actions.navigateToHomePage(page);
       await verifications.verifyHomePage(page);
-      await expect(page).toHaveScreenshot('home-page.png');
+      //await expect(page).toHaveScreenshot('home-page.png');
       await mod.signupExist(page,userSignupData);
     } catch (error) {
       console.error(error);

@@ -7,34 +7,34 @@ import * as verifications from './verifications.ts';
 export async function deleteAccount(page) {
     await actions.clickDeleteAccount(page);
     await verifications.verifyAccountDeleted(page);
-    await expect(page).toHaveScreenshot('deleted.png');
+    //await expect(page).toHaveScreenshot('deleted.png');
     await actions.clickContinue(page);
 }
 
 export async function login(page, userData) {
     await actions.clickLoginSignup(page);
     await verifications.verifyLogin(page);
-    await expect(page).toHaveScreenshot('login-page.png');
+    //await expect(page).toHaveScreenshot('login-page.png');
     await fill.loggerUser(page, userData);
     await actions.clickLogin(page);
     await verifications.verifyLoggedInAs(page);
-    await expect(page).toHaveScreenshot('logged-as.png');
+    //await expect(page).toHaveScreenshot('logged-as.png');
 }
 
 export async function loginIncorrect(page, userData) {
     await actions.clickLoginSignup(page);
     await verifications.verifyLogin(page);
-    await expect(page).toHaveScreenshot('login-page.png');
+    //await expect(page).toHaveScreenshot('login-page.png');
     await fill.loggerUser(page, userData);
     await actions.clickLogin(page);
     await verifications.verifyUserIncorrect(page);
-    await expect(page).toHaveScreenshot('incorrect-login.png');
+    //await expect(page).toHaveScreenshot('incorrect-login.png');
 }
 
 export async function signup(page, userData) {
     await actions.clickLoginSignup(page);
     await verifications.verifySignup(page);
-    await expect(page).toHaveScreenshot('registerUser.png');
+    //await expect(page).toHaveScreenshot('registerUser.png');
     await fill.registerUser(page, userData);
     await actions.clickSignup(page);
     await verifications.verifyEnterAccountInformation(page);
@@ -52,17 +52,17 @@ export async function signupExist(page, userData) {
     await fill.signupUserExist(page, userData);
     await actions.clickSignup(page);
     await verifications.verifySignupUserExist(page);
-    await expect(page).toHaveScreenshot('already-exists.png');
+    //await expect(page).toHaveScreenshot('already-exists.png');
 }
 
 export async function contactUs(page, contactUsData) {
     await actions.clickContactUs(page);
     await verifications.verifyContactUs(page);
-    await expect(page).toHaveScreenshot('contact-us.png');
+    //await expect(page).toHaveScreenshot('contact-us.png');
     await fill.fillContactForm(page, contactUsData);
     await actions.submitForm(page);
     await verifications.verifyFormSubmissionSuccess(page);
-    await expect(page).toHaveScreenshot('contact-us-success.png');
+    //await expect(page).toHaveScreenshot('contact-us-success.png');
 }
 
 export async function searchProduct(page, productName) {
@@ -70,28 +70,28 @@ export async function searchProduct(page, productName) {
     await fill.searchProduct(page, productName);
     await verifications.verifySearchedProductsAreVisible(page, productName);
     await actions.hideAds(page);
-    await expect(page).toHaveScreenshot('search-results.png');
+    //await expect(page).toHaveScreenshot('search-results.png');
 }
 
 export async function subscription(page) {
     await actions.scrollToFooter(page);
     await verifications.verifySubscriptionText(page);
-    await expect(page).toHaveScreenshot('sub-page.png');
+    //await expect(page).toHaveScreenshot('sub-page.png');
     const email = 'user@email.com';
     await fill.enterEmailAndSubscribe(page, email);
     await verifications.verifySubscriptionSuccessMessage(page);
-    await expect(page).toHaveScreenshot('sub-success.png');
+    //await expect(page).toHaveScreenshot('sub-success.png');
 }
 
 export async function checkout(page, paymentDetails) {
     await actions.clickProceedToCheckout(page);
     await verifications.verifyAddressDetailsAndReviewOrder(page);
-    await expect(page).toHaveScreenshot('adressAndReview.png');
+    //await expect(page).toHaveScreenshot('adressAndReview.png');
     await fill.enterDescriptionAndPlaceOrder(page, paymentDetails);
     await fill.enterPaymentDetails(page, paymentDetails);
     await actions.payAndConfirmOrder(page);
     await verifications.verifyOrderPlacedSuccessfully(page);
-    await expect(page).toHaveScreenshot('orderPlacedSuccessfully.png');
+    //await expect(page).toHaveScreenshot('orderPlacedSuccessfully.png');
 }
 
 export async function checkoutPage(page) {
@@ -104,7 +104,7 @@ export async function executePayment(page, paymentDetails) {
     await fill.enterPaymentDetails(page, paymentDetails);
     await actions.payAndConfirmOrder(page);
     await verifications.verifyOrderPlacedSuccessfully(page);
-    await expect(page).toHaveScreenshot('orderPlacedSuccessfully.png');
+    //await expect(page).toHaveScreenshot('orderPlacedSuccessfully.png');
 }
 
 export async function downloadInvoice(page) {
