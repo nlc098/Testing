@@ -4,9 +4,9 @@ const baseURL = 'http://automationexercise.com/api';
 
 // Check Response Code Status
 export async function checkResponseCode(responseBody, responseCodeStatus) {
+    console.log("\nResponse Body = " + JSON.stringify(responseBody, null, 2));
     expect(responseBody).toHaveProperty('responseCode');
     expect(responseBody.responseCode).toBe(responseCodeStatus);
-    console.log("\nResponse Body = " + JSON.stringify(responseBody, null, 2));
 }
 
 // GET Request

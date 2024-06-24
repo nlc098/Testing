@@ -38,7 +38,5 @@ test('API 11: POST To Create/Register User Account', async () => {
     const responseBody = await response.json();
 
    // No devuelve el responseCode esperado
-   // await apiRequest.checkResponseCode(responseBody, 201);
-
-   console.log("\nResponse Body = " + JSON.stringify(responseBody, null, 2));
+   await apiRequest.checkResponseCode(responseBody, 201);
 });

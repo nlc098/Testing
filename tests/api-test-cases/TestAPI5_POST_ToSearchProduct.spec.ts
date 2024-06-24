@@ -23,7 +23,5 @@ test('API 5: POST To Search Product', async () => {
     const responseBody = await response.json();
 
     // No devuelve el responseCode esperado
-    // await apiRequest.checkResponseCode(responseBody, 200);
-
-    console.log("\nResponse Body = " + JSON.stringify(responseBody, null, 2));
+    await apiRequest.checkResponseCode(responseBody, 200);
 });

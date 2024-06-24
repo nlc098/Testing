@@ -26,7 +26,5 @@ test('API 10: POST To Verify Login with invalid details', async () => {
     const responseBody = await response.json();
 
     // No devuelve el responseCode esperado
-    // await apiRequest.checkResponseCode(responseBody, 400);
-
-    console.log("\nResponse Body = " + JSON.stringify(responseBody, null, 2));
+    await apiRequest.checkResponseCode(responseBody, 404);
 });
